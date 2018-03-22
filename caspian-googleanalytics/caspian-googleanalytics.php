@@ -25,7 +25,6 @@ You should have received a copy of the GNU General Public License
 along with Caspian GoogleAnalytics. If not, see https://www.gnu.org/licenses/gpl-3.0.html/.
 */
 
-
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -38,30 +37,30 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-plugin-name-activator.php
+ * This action is documented in includes/class-caspian-googleanalytics-activator.php
  */
-function activate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
-	Plugin_Name_Activator::activate();
+function activate_caspian_googleanalytics() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-activator.php';
+	Caspian_GoogleAnalytics_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-plugin-name-deactivator.php
+ * This action is documented in includes/class-caspian-googleanalytics-deactivator.php
  */
-function deactivate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
-	Plugin_Name_Deactivator::deactivate();
+function deactivate_caspian_googleanalytics() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-deactivator.php';
+	Caspian_GoogleAnalytics_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_plugin_name' );
-register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
+register_activation_hook( __FILE__, 'activate_caspian_googleanalytics' );
+register_deactivation_hook( __FILE__, 'deactivate_caspian_googleanalytics' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics.php';
 
 /**
  * Begins execution of the plugin.
@@ -72,10 +71,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
  *
  * @since    1.0.0
  */
-function run_plugin_name() {
+function run_caspian_googleanalytics() {
 
-	$plugin = new Plugin_Name();
+	$plugin = new Caspian_GoogleAnalytics();
 	$plugin->run();
 
 }
-run_plugin_name();
+run_caspian_googleanalytics();

@@ -20,6 +20,8 @@ Caspian GoogleAnalytics includes the following files:
 ## Installation
 
 Caspian GoogleAnalytics can be installed directly into your plugins folder "as-is".
+1. Upload the folder 'caspian-googleanalytics' to the '/wp-content/plugins/' directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
 
 ## License
 
