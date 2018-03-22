@@ -40,8 +40,10 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
  * This action is documented in includes/class-caspian-googleanalytics-activator.php
  */
 function activate_caspian_googleanalytics() {
+	
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-activator.php';
 	Caspian_GoogleAnalytics_Activator::activate();
+	
 }
 
 /**
@@ -49,8 +51,10 @@ function activate_caspian_googleanalytics() {
  * This action is documented in includes/class-caspian-googleanalytics-deactivator.php
  */
 function deactivate_caspian_googleanalytics() {
+	
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-deactivator.php';
 	Caspian_GoogleAnalytics_Deactivator::deactivate();
+	
 }
 
 register_activation_hook( __FILE__, 'activate_caspian_googleanalytics' );
