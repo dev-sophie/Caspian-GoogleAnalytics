@@ -54,6 +54,28 @@ class Caspian_GoogleAnalytics_Admin {
 		$this->set_options();
 
 	}
+	
+	/**
+	 * Register the stylesheets for the Dashboard.
+	 *
+	 * @since 		1.0.0
+	 */
+	public function enqueue_styles() {
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/' . $this->plugin_name . '-admin.css', array(), $this->version, 'all' );
+
+	}
+	
+	/**
+	 * Register the JavaScript for the dashboard.
+	 *
+	 * @since 		1.0.0
+	 */
+	public function enqueue_scripts() {
+
+		return;
+
+	}
 
 	/**
 	 * Adds a page link to a menu.
@@ -62,15 +84,14 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @since	1.0.0
 	 * @return	void
 	 */
-	public function add_menu() {
+	public function add_menus() {
 
-		add_submenu_page(
-			'options-general.php',
-			apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'Caspian GoogleAnalytics Settings', 'caspian-googleanalytics' ) ),
+		add_options_page(
+			apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ) ),
 			apply_filters( $this->plugin_name . '-settings-menu-title', esc_html__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ) ),
 			'manage_options',
 			$this->plugin_name . '-settings',
-			array( $this, 'page_settings' )
+			array( $this, 'settings_page' )
 		);
 
 	}
@@ -81,9 +102,120 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @since 		1.0.0
 	 * @return 		void
 	 */
-	public function page_settings() {
+	public function settings_page() {
 
+		// check user capabilities
+		if (!current_user_can('manage_options')) {
+			return;
+		}
+		
 		include( plugin_dir_path( __FILE__ ) . 'partials/caspian-googleanalytics-admin-page-settings.php' );
+
+	}
+	
+	/**
+	 * Creates a checkbox field
+	 *
+	 * @param 	array 		$args 			The arguments for the field
+	 * @return 	string 						The HTML field
+	 */
+	public function field_checkbox( $args ) {
+
+		$defaults['class'] 			= '';
+		$defaults['description'] 	= '';
+		$defaults['label'] 			= '';
+		$defaults['name'] 			= $this->plugin_name . '-settings[' . $args['id'] . ']';
+		$defaults['value'] 			= 0;
+
+		apply_filters( $this->plugin_name . '-field-checkbox-options-defaults', $defaults );
+
+		$atts = wp_parse_args( $args, $defaults );
+
+		if ( ! empty( $this->options[$atts['id']] ) ) {
+
+			$atts['value'] = $this->options[$atts['id']];
+
+		}
+
+		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-admin-field-checkbox.php' );
+
+	}
+	
+	/**
+	 * Creates a text field
+	 *
+	 * @param 	array 		$args 			The arguments for the field
+	 * @return 	string 						The HTML field
+	 */
+	public function field_text( $args ) {
+
+		$defaults['class'] 			= 'text widefat';
+		$defaults['description'] 	= '';
+		$defaults['label'] 			= '';
+		$defaults['name'] 			= $this->plugin_name . '-settings[' . $args['id'] . ']';
+		$defaults['placeholder'] 	= '';
+		$defaults['type'] 			= 'text';
+		$defaults['value'] 			= '';
+
+		apply_filters( $this->plugin_name . '-field-text-options-defaults', $defaults );
+
+		$atts = wp_parse_args( $args, $defaults );
+
+		if ( ! empty( $this->options[$atts['id']] ) ) {
+
+			$atts['value'] = $this->options[$atts['id']];
+
+		}
+
+		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-admin-field-text.php' );
+
+	}
+	
+	/**
+	 * Registers settings fields with WordPress
+	 */
+	public function register_fields() {
+
+		add_settings_field(
+			'message-no-openings',
+			apply_filters( $this->plugin_name . 'label-message-no-openings', esc_html__( 'No Openings Message', 'now-hiring' ) ),
+			array( $this, 'field_text' ),
+			$this->plugin_name,
+			$this->plugin_name . '-messages',
+			array(
+				'description' 	=> 'This message displays on the page if no job postings are found.',
+				'id' 			=> 'message-no-openings',
+				'value' 		=> 'Thank you for your interest! There are no job openings at this time.',
+			)
+		);
+		
+		add_settings_field(
+			'checkbox-no-openings',
+			apply_filters( $this->plugin_name . 'label-mesage-no-openings', esc_html__( 'No Openings Message', 'now-hiring' ) ),
+			array( $this, 'field_checkbox' ),
+			$this->plugin_name,
+			$this->plugin_name . '-messages',
+			array(
+				'description' 	=> 'This message displays on the page if no job postings are found.',
+				'id' 			=> 'mesage-no-openings',
+				'value' 		=> 'Thank you for your interest! There are no job openings at this time.',
+			)
+		);
+
+	}
+	
+	/**
+	 * Registers plugin settings.
+	 *
+	 * @since 		1.0.0
+	 * @return 		void
+	 */
+	public function register_settings() {
+
+		register_setting(
+			$this->plugin_name . '-settings',
+			$this->plugin_name . '-settings'
+		);
 
 	}
 	
