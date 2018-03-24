@@ -38,4 +38,4 @@ intermediate
 .idea
 cache
 
-.zip
+*.zip
