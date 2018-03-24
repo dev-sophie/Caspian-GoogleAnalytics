@@ -51,27 +51,6 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-caspian-googleanalytics-activator.php
- */
-function activate_caspian_googleanalytics() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-activator.php';
-	Caspian_Googleanalytics_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-caspian-googleanalytics-deactivator.php
- */
-function deactivate_caspian_googleanalytics() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-deactivator.php';
-	Caspian_Googleanalytics_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_caspian_googleanalytics' );
-register_deactivation_hook( __FILE__, 'deactivate_caspian_googleanalytics' );
-
-/**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
