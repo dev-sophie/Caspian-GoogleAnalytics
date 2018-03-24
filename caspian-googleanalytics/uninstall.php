@@ -29,3 +29,10 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+// Delete all database entries from this plugin.
+foreach ( wp_load_alloptions() as $option => $value ) {
+    if ( strpos( $option, 'caspian_googleanalytics_' ) === 0 ) {
+        delete_option( $option );
+    }
+}
