@@ -19,7 +19,9 @@ class Caspian_GoogleAnalytics_i18n {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		load_plugin_textdomain(
 			'caspian-googleanalytics',
 			false,

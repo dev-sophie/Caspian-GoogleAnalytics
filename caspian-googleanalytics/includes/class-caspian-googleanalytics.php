@@ -53,6 +53,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	public function __construct() {
 		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
 			$this->version = PLUGIN_NAME_VERSION;
 		} else {
@@ -85,6 +86,8 @@ class Caspian_GoogleAnalytics {
 	 */
 	private function load_dependencies() {
 
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -123,6 +126,8 @@ class Caspian_GoogleAnalytics {
 	 */
 	private function set_locale() {
 
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$plugin_i18n = new Caspian_GoogleAnalytics_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -137,7 +142,9 @@ class Caspian_GoogleAnalytics {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$plugin_admin = new Caspian_GoogleAnalytics_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -158,6 +165,8 @@ class Caspian_GoogleAnalytics {
 	 */
 	private function define_public_hooks() {
 
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$plugin_public = new Caspian_GoogleAnalytics_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
@@ -172,6 +181,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	public function run() {
 		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		$this->loader->run();
 		
 	}
@@ -185,6 +195,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	public function get_plugin_name() {
 		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		return $this->plugin_name;
 		
 	}
@@ -197,6 +208,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	public function get_version() {
 		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		return $this->version;
 		
 	}
@@ -209,6 +221,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	public function get_loader() {
 		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		return $this->loader;
 		
 	}

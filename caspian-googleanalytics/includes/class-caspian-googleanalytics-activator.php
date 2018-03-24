@@ -20,6 +20,8 @@ class Caspian_GoogleAnalytics_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 
 	}
 

@@ -47,7 +47,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @param   string		$version		The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		
@@ -61,7 +63,8 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @since 		1.0.0
 	 */
 	public function enqueue_styles() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/' . $this->plugin_name . '-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -72,7 +75,8 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @since 		1.0.0
 	 */
 	public function enqueue_scripts() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		return;
 
 	}
@@ -85,7 +89,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @return	void
 	 */
 	public function add_menus() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		add_options_page(
 			apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ) ),
 			apply_filters( $this->plugin_name . '-settings-menu-title', esc_html__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ) ),
@@ -103,7 +109,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @return 		void
 	 */
 	public function settings_page() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		// check user capabilities
 		if (!current_user_can('manage_options')) {
 			return;
@@ -120,7 +128,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @return 	string 						The HTML field
 	 */
 	public function field_checkbox( $args ) {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$defaults['class'] 			= '';
 		$defaults['description'] 	= '';
 		$defaults['label'] 			= '';
@@ -148,7 +158,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @return 	string 						The HTML field
 	 */
 	public function field_text( $args ) {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$defaults['class'] 			= 'text widefat';
 		$defaults['description'] 	= '';
 		$defaults['label'] 			= '';
@@ -175,7 +187,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * Registers settings fields with WordPress
 	 */
 	public function register_fields() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		add_settings_field(
 			'message-no-openings',
 			apply_filters( $this->plugin_name . 'label-message-no-openings', esc_html__( 'No Openings Message', 'now-hiring' ) ),
@@ -211,7 +225,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @return 		void
 	 */
 	public function register_settings() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		register_setting(
 			$this->plugin_name . '-settings',
 			$this->plugin_name . '-settings'
@@ -226,7 +242,9 @@ class Caspian_GoogleAnalytics_Admin {
 	 * @return	void
 	 */
 	private function set_options() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$this->options = get_option( $this->plugin_name . '-options' );
 
 	}

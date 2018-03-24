@@ -7,7 +7,9 @@
  * @subpackage	caspian-googleanalytics/admin
  * @author		Sophie Senftleben <develop@sophie-senftleben.de>
  */
-?>
+
+ error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+ ?>
 
 <label for="<?php echo esc_attr( $atts['id'] ); ?>">
 	<input aria-role="checkbox"

@@ -9,6 +9,8 @@
  * @subpackage	caspian-googleanalytics/includes
  * @author		Sophie Senftleben <develop@sophie-senftleben.de>
  */
+ 
+error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 ?>
 
 <div class="wrap">

@@ -39,6 +39,7 @@ class Caspian_GoogleAnalytics_Loader {
 	 */
 	public function __construct() {
 
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		$this->actions = array();
 		$this->filters = array();
 
@@ -55,7 +56,10 @@ class Caspian_GoogleAnalytics_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1.
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
+		
 	}
 
 	/**
@@ -69,7 +73,10 @@ class Caspian_GoogleAnalytics_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
+		
 	}
 
 	/**
@@ -87,7 +94,9 @@ class Caspian_GoogleAnalytics_Loader {
 	 * @return   array                                  The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		$hooks[] = array(
 			'hook'          => $hook,
 			'component'     => $component,
@@ -106,7 +115,9 @@ class Caspian_GoogleAnalytics_Loader {
 	 * @since    1.0.0
 	 */
 	public function run() {
-
+		
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		
 		foreach ( $this->filters as $hook ) {
 			add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}

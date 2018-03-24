@@ -21,6 +21,8 @@ class Caspian_GoogleAnalytics_Deactivator {
 	 */
 	public static function deactivate() {
 
+		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+	
 	}
 
 }

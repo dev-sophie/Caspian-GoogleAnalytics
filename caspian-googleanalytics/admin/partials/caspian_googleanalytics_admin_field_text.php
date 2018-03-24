@@ -8,6 +8,8 @@
  * @author		Sophie Senftleben <develop@sophie-senftleben.de>
  */
 
+error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+ 
 if ( ! empty( $atts['label'] ) ) {
 
 	?><label for="<?php echo esc_attr( $atts['id'] ); ?>"><?php esc_html_e( $atts['label'], 'caspian-googleanalytics' ); ?>: </label><?php

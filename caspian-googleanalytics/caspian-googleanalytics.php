@@ -41,6 +41,7 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
  */
 function activate_caspian_googleanalytics() {
 	
+	error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-activator.php';
 	Caspian_GoogleAnalytics_Activator::activate();
 	
@@ -52,6 +53,7 @@ function activate_caspian_googleanalytics() {
  */
 function deactivate_caspian_googleanalytics() {
 	
+	error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-deactivator.php';
 	Caspian_GoogleAnalytics_Deactivator::deactivate();
 	
@@ -77,6 +79,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics.ph
  */
 function run_caspian_googleanalytics() {
 
+	error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 	$plugin = new Caspian_GoogleAnalytics();
 	$plugin->run();
 
