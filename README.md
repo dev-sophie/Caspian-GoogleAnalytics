@@ -15,7 +15,8 @@ Caspian GoogleAnalytics includes the following files:
 
 * Caspian GoogleAnalytics adds a settings page to the WordPress backend where you can save your GoogleAnalytics Tracking-ID.
 * An option to cut off IP's is provided to meet German privacy declarations.
-* The GoogleAnalytics Tracking Code is automatically added in all relevant places.
+* The GoogleAnalytics Tracking Code is automatically added at the beginning of the head tag.
+* The plugin comes translated in English and German.
 
 ## Installation
 
