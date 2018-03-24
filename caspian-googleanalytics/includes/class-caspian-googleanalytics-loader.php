@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Register all actions and filters for the plugin
  *
@@ -21,7 +20,8 @@
  * @subpackage Caspian_Googleanalytics/includes
  * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
-class Caspian_Googleanalytics_Loader {
+ 
+class Caspian_GoogleAnalytics_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
@@ -64,7 +64,9 @@ class Caspian_Googleanalytics_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1.
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
+		
 	}
 
 	/**
@@ -78,7 +80,9 @@ class Caspian_Googleanalytics_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
+		
 	}
 
 	/**

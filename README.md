@@ -17,6 +17,7 @@ Caspian GoogleAnalytics includes the following files:
 * An option to cut off IP's is provided to meet German privacy declarations.
 * The GoogleAnalytics Tracking Code is automatically added at the beginning of the head tag.
 * The plugin comes translated in English and German.
+* When uninstalling the plugin, all database entries that were made will be deleted. This plugin is not leaving any rubbish behind.
 
 ## Installation
 

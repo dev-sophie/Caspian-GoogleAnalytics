@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -20,7 +19,8 @@
  * @subpackage Caspian_Googleanalytics/admin
  * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
-class Caspian_Googleanalytics_Admin {
+ 
+class Caspian_GoogleAnalytics_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -152,7 +152,7 @@ class Caspian_Googleanalytics_Admin {
 	public function caspian_googleanalytics_tracking_id_setting() {
 		
 		$tracking_id = get_option( $this->option_name . '_tracking_id' );
-		echo '<input type="text" name="' . $this->option_name . '_tracking_id' . '" id="' . $this->option_name . '_tracking_id' . '" value="' . $tracking_id . '" placeholder="UA-XXXXXXXXX-X">';
+		echo '<input type="text" name="' . $this->option_name . '_tracking_id' . '" id="' . $this->option_name . '_tracking_id' . '" value="' . $tracking_id . '" placeholder="UA-XXXXXXXXX-X" class="regular-text">';
 	}
 	
 	/**
@@ -164,7 +164,7 @@ class Caspian_Googleanalytics_Admin {
 		
 		$anonymize_ip = get_option( $this->option_name . '_anonymize_ip' );
 		$checked = checked( 1, $anonymize_ip, false );
-		echo '<input type="checkbox" name="' . $this->option_name . '_anonymize_ip" id="' . $this->option_name . '_anonymize_ip" ' . $checked . ' value="1">';
+		echo '<fieldset><label for="' . $this->option_name . '_anonymize_ip"><input type="checkbox" name="' . $this->option_name . '_anonymize_ip" id="' . $this->option_name . '_anonymize_ip" ' . $checked . ' value="1" />  ' . __( 'Cuts off the end of the IP address.', 'caspian-googleanalytics' ) . '</label><p class="description">' . __( 'To be compliant to German data protection laws, you have to anonymize the IP addresses.', 'caspian-googleanalytics' ) . '</p></fieldset>';
 		
 	}
 	

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,8 @@
  * @subpackage Caspian_Googleanalytics/includes
  * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
-class Caspian_Googleanalytics_i18n {
+ 
+class Caspian_GoogleAnalytics_i18n {
 
 
 	/**
@@ -41,7 +41,5 @@ class Caspian_Googleanalytics_i18n {
 		);
 
 	}
-
-
 
 }

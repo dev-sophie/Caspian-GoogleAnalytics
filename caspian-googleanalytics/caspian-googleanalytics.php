@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -67,7 +66,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics.ph
  */
 function run_caspian_googleanalytics() {
 
-	$plugin = new Caspian_Googleanalytics();
+	$plugin = new Caspian_GoogleAnalytics();
 	$plugin->run();
 
 }

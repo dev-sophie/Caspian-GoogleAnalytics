@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Caspian GoogleAnalytics\n"
-"POT-Creation-Date: 2018-03-24 11:03+0100\n"
+"POT-Creation-Date: 2018-03-24 14:39+0100\n"
 "PO-Revision-Date: 2018-03-24 09:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: Sophie Senftleben\n"
@@ -21,23 +21,33 @@ msgstr ""
 "transChoice:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/class-caspian-googleanalytics-admin.php:120
-#: admin/class-caspian-googleanalytics-admin.php:121
+#: admin/class-caspian-googleanalytics-admin.php:75
+#: admin/class-caspian-googleanalytics-admin.php:76
 msgid "Caspian GoogleAnalytics"
 msgstr ""
 
-#: admin/class-caspian-googleanalytics-admin.php:150
+#: admin/class-caspian-googleanalytics-admin.php:105
 msgid "Settings"
 msgstr ""
 
-#: admin/class-caspian-googleanalytics-admin.php:157
+#: admin/class-caspian-googleanalytics-admin.php:112
 msgid "Tracking-ID"
 msgstr ""
 
-#: admin/class-caspian-googleanalytics-admin.php:166
+#: admin/class-caspian-googleanalytics-admin.php:121
 msgid "Anonymize IP"
 msgstr ""
 
-#: admin/class-caspian-googleanalytics-admin.php:185
+#: admin/class-caspian-googleanalytics-admin.php:140
 msgid "Please change the settings to match your GoogleAnalytics account."
+msgstr ""
+
+#: admin/class-caspian-googleanalytics-admin.php:167
+msgid "Cuts off the end of the IP address."
+msgstr ""
+
+#: admin/class-caspian-googleanalytics-admin.php:167
+msgid ""
+"To be compliant to German data protection laws, you have to anonymize the "
+"IP addresses."
 msgstr ""

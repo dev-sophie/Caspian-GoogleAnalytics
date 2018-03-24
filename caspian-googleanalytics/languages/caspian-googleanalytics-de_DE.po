@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Caspian GoogleAnalytics\n"
-"POT-Creation-Date: 2018-03-24 11:02+0100\n"
-"PO-Revision-Date: 2018-03-24 11:02+0100\n"
+"POT-Creation-Date: 2018-03-24 14:39+0100\n"
+"PO-Revision-Date: 2018-03-24 14:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: Sophie Senftleben\n"
 "Language: de_DE\n"
@@ -13,35 +13,46 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
-"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;"
-"__ngettext_noop:1,2;_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;"
-"_nx_js:1,2,3c;esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;"
-"esc_attr_x:1,2c;esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;"
-"transChoice:1,2\n"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/class-caspian-googleanalytics-admin.php:120
-#: admin/class-caspian-googleanalytics-admin.php:121
+#: admin/class-caspian-googleanalytics-admin.php:75
+#: admin/class-caspian-googleanalytics-admin.php:76
 msgid "Caspian GoogleAnalytics"
 msgstr "Caspian GoogleAnalytics"
 
-#: admin/class-caspian-googleanalytics-admin.php:150
+#: admin/class-caspian-googleanalytics-admin.php:105
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin/class-caspian-googleanalytics-admin.php:157
+#: admin/class-caspian-googleanalytics-admin.php:112
 msgid "Tracking-ID"
 msgstr "Tracking-ID"
 
-#: admin/class-caspian-googleanalytics-admin.php:166
+#: admin/class-caspian-googleanalytics-admin.php:121
 msgid "Anonymize IP"
 msgstr "IP anonymisieren"
 
-#: admin/class-caspian-googleanalytics-admin.php:185
+#: admin/class-caspian-googleanalytics-admin.php:140
 msgid "Please change the settings to match your GoogleAnalytics account."
 msgstr ""
 "Ändere hier die Einstellungen, damit sie zu Deinem GoogleAnalytics Konto "
 "passen."
+
+#: admin/class-caspian-googleanalytics-admin.php:167
+msgid "Cuts off the end of the IP address."
+msgstr "Schneidet die letzten Stellen der IP-Adresse ab."
+
+#: admin/class-caspian-googleanalytics-admin.php:167
+msgid ""
+"To be compliant to German data protection laws, you have to anonymize the IP "
+"addresses."
+msgstr ""
+"In Deutschland ist eine datenschutzkonforme Nutzung nur möglich, wenn die IP-"
+"Adresse anonymisiert wird."
 
 #~ msgid "days"
 #~ msgstr "Tage"

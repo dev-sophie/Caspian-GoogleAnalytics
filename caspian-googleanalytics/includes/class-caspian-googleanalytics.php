@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -27,7 +26,8 @@
  * @subpackage Caspian_Googleanalytics/includes
  * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
-class Caspian_Googleanalytics {
+ 
+class Caspian_GoogleAnalytics {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -137,7 +137,7 @@ class Caspian_Googleanalytics {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Caspian_Googleanalytics_i18n();
+		$plugin_i18n = new Caspian_GoogleAnalytics_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +152,7 @@ class Caspian_Googleanalytics {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Caspian_Googleanalytics_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Caspian_GoogleAnalytics_Admin( $this->get_plugin_name(), $this->get_version() );
 		
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );
@@ -168,7 +168,7 @@ class Caspian_Googleanalytics {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Caspian_Googleanalytics_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Caspian_GoogleAnalytics_Public( $this->get_plugin_name(), $this->get_version() );
 		
 		$this->loader->add_action( 'wp_head', $plugin_public, 'add_googleanalytics_tracking_code', 1 );
 

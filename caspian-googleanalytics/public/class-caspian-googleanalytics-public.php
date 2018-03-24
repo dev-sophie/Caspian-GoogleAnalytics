@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -20,7 +19,8 @@
  * @subpackage Caspian_Googleanalytics/public
  * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
-class Caspian_Googleanalytics_Public {
+ 
+class Caspian_GoogleAnalytics_Public {
 
 	/**
 	 * The ID of this plugin.
