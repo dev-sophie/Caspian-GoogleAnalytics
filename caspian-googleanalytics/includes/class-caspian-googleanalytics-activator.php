@@ -1,16 +1,26 @@
 <?php
+
+/**
+ * Fired during plugin activation
+ *
+ * @link       https://sophie-senftleben.de/
+ * @since      1.0.0
+ *
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/includes
+ */
+
 /**
  * Fired during plugin activation.
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since       1.0.0
- * @package		caspian-googleanalytics
- * @subpackage	caspian-googleanalytics/includes
- * @author		Sophie Senftleben <develop@sophie-senftleben.de>
+ * @since      1.0.0
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/includes
+ * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
- 
-class Caspian_GoogleAnalytics_Activator {
+class Caspian_Googleanalytics_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -20,8 +30,6 @@ class Caspian_GoogleAnalytics_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 
 	}
 

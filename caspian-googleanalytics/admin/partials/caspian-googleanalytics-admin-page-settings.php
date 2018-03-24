@@ -1,30 +1,27 @@
 <?php
+
 /**
- * Provide a admin area view for the plugin.
+ * Provide a admin area view for the plugin
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @since       1.0.0
- * @package		caspian-googleanalytics
- * @subpackage	caspian-googleanalytics/includes
- * @author		Sophie Senftleben <develop@sophie-senftleben.de>
+ * @link       https://sophie-senftleben.de/
+ * @since      1.0.0
+ *
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/admin/partials
  */
- 
-error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 ?>
 
-<div class="wrap">
-	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-	<form action="options.php" method="post">
-		<?php
-		// Output fields for the registered setting 'caspian-googleanalytics-settings'.
-		settings_fields( $this->plugin_name . '-settings' );
-		
-		// Output setting sections and their fields.
-		do_settings_sections( $this->plugin_name );
+<!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
-		// Output save settings button.
-		submit_button( 'Änderungen speichern' );
-		?>
-	</form>
-</div>
+<div class="wrap">
+	    <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+	    <form action="options.php" method="post">
+	        <?php
+	            settings_fields( $this->plugin_name );
+	            do_settings_sections( $this->plugin_name );
+	            submit_button();
+	        ?>
+	    </form>
+	</div>

@@ -1,29 +1,42 @@
 <?php
-/*
-Plugin Name:  Caspian GoogleAnalytics
-Plugin URI:   https://sophie-senftleben.de/development/wordpress/caspian-googleanalytics/
-Description:  This is a small plugin that inserts your GoogleAnalytics Tracking Code in the right place, simple and easy.
-Version:      1.0.0
-Author:       Sophie Senftleben
-Author URI:   https://sophie-senftleben.de/
-License:      GPLv3
-License URI:  https://www.gnu.org/licenses/gpl-3.0.html/
-Text Domain:  caspian-googleanalytics
-Domain Path:  /languages
 
-Caspian GoogleAnalytics is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-any later version.
+/**
+ * The plugin bootstrap file
+ *
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ *
+ * @link              https://sophie-senftleben.de/
+ * @since             1.0.0
+ * @package           Caspian_Googleanalytics
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Caspian GoogleAnalytics
+ * Plugin URI:        https://sophie-senftleben.de/development/wordpress/caspian-googleanalytics/
+ * Description:       This is a small plugin that inserts your GoogleAnalytics Tracking Code in the right place, simple and easy.
+ * Version:           1.0.0
+ * Author:            Sophie Senftleben
+ * Author URI:        https://sophie-senftleben.de/
+ * License:           GPLv3
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html/
+ * Text Domain:       caspian-googleanalytics
+ * Domain Path:       /languages
  
-Caspian GoogleAnalytics is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+ Caspian GoogleAnalytics is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ any later version.
  
-You should have received a copy of the GNU General Public License
-along with Caspian GoogleAnalytics. If not, see https://www.gnu.org/licenses/gpl-3.0.html/.
-*/
+ Caspian GoogleAnalytics is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Caspian GoogleAnalytics. If not, see https://www.gnu.org/licenses/gpl-3.0.html/.
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -31,7 +44,9 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Currently plugin version, using SemVer (https://semver.org/).
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
  */
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
@@ -40,11 +55,8 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
  * This action is documented in includes/class-caspian-googleanalytics-activator.php
  */
 function activate_caspian_googleanalytics() {
-	
-	error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-activator.php';
-	Caspian_GoogleAnalytics_Activator::activate();
-	
+	Caspian_Googleanalytics_Activator::activate();
 }
 
 /**
@@ -52,11 +64,8 @@ function activate_caspian_googleanalytics() {
  * This action is documented in includes/class-caspian-googleanalytics-deactivator.php
  */
 function deactivate_caspian_googleanalytics() {
-	
-	error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics-deactivator.php';
-	Caspian_GoogleAnalytics_Deactivator::deactivate();
-	
+	Caspian_Googleanalytics_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_caspian_googleanalytics' );
@@ -79,8 +88,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-caspian-googleanalytics.ph
  */
 function run_caspian_googleanalytics() {
 
-	error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-	$plugin = new Caspian_GoogleAnalytics();
+	$plugin = new Caspian_Googleanalytics();
 	$plugin->run();
 
 }

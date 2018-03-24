@@ -1,18 +1,33 @@
 <?php
+
+/**
+ * The file that defines the core plugin class
+ *
+ * A class definition that includes attributes and functions used across both the
+ * public-facing side of the site and the admin area.
+ *
+ * @link       https://sophie-senftleben.de/
+ * @since      1.0.0
+ *
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/includes
+ */
+
 /**
  * The core plugin class.
  *
  * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks. Also maintains the unique identifier of this
- * plugin as well as the current version of the plugin.
+ * public-facing site hooks.
  *
- * @since       1.0.0
- * @package		caspian-googleanalytics
- * @subpackage	caspian-googleanalytics/includes
- * @author		Sophie Senftleben <develop@sophie-senftleben.de>
+ * Also maintains the unique identifier of this plugin as well as the current
+ * version of the plugin.
+ *
+ * @since      1.0.0
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/includes
+ * @author     Sophie Senftleben <develop@sophie-senftleben.de>
  */
- 
-class Caspian_GoogleAnalytics {
+class Caspian_Googleanalytics {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -20,7 +35,7 @@ class Caspian_GoogleAnalytics {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Caspian_GoogleAnalytics_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Caspian_Googleanalytics_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -52,8 +67,6 @@ class Caspian_GoogleAnalytics {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
 			$this->version = PLUGIN_NAME_VERSION;
 		} else {
@@ -73,10 +86,10 @@ class Caspian_GoogleAnalytics {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Caspian_GoogleAnalytics_Loader. Orchestrates the hooks of the plugin.
-	 * - Caspian_GoogleAnalytics_i18n. Defines internationalization functionality.
-	 * - Caspian_GoogleAnalytics_Admin. Defines all hooks for the admin area.
-	 * - Caspian_GoogleAnalytics_Public. Defines all hooks for the public side of the site.
+	 * - Caspian_Googleanalytics_Loader. Orchestrates the hooks of the plugin.
+	 * - Caspian_Googleanalytics_i18n. Defines internationalization functionality.
+	 * - Caspian_Googleanalytics_Admin. Defines all hooks for the admin area.
+	 * - Caspian_Googleanalytics_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -86,8 +99,6 @@ class Caspian_GoogleAnalytics {
 	 */
 	private function load_dependencies() {
 
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -111,14 +122,14 @@ class Caspian_GoogleAnalytics {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-caspian-googleanalytics-public.php';
 
-		$this->loader = new Caspian_GoogleAnalytics_Loader();
+		$this->loader = new Caspian_Googleanalytics_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Caspian_GoogleAnalytics_i18n class in order to set the domain and to register the hook
+	 * Uses the Caspian_Googleanalytics_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -126,9 +137,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	private function set_locale() {
 
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		$plugin_i18n = new Caspian_GoogleAnalytics_i18n();
+		$plugin_i18n = new Caspian_Googleanalytics_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -142,17 +151,16 @@ class Caspian_GoogleAnalytics {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		$plugin_admin = new Caspian_GoogleAnalytics_Admin( $this->get_plugin_name(), $this->get_version() );
+
+		$plugin_admin = new Caspian_Googleanalytics_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menus' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_fields' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );
+		
+		$this->loader->add_action( 'wp_head', $plugin_admin, 'add_googleanalytics_tracking_code', 1 );
 
 	}
 
@@ -165,9 +173,7 @@ class Caspian_GoogleAnalytics {
 	 */
 	private function define_public_hooks() {
 
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		$plugin_public = new Caspian_GoogleAnalytics_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Caspian_Googleanalytics_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -180,10 +186,7 @@ class Caspian_GoogleAnalytics {
 	 * @since    1.0.0
 	 */
 	public function run() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		$this->loader->run();
-		
 	}
 
 	/**
@@ -194,12 +197,19 @@ class Caspian_GoogleAnalytics {
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		return $this->plugin_name;
-		
 	}
-	
+
+	/**
+	 * The reference to the class that orchestrates the hooks with the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    Caspian_Googleanalytics_Loader    Orchestrates the hooks of the plugin.
+	 */
+	public function get_loader() {
+		return $this->loader;
+	}
+
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
@@ -207,23 +217,7 @@ class Caspian_GoogleAnalytics {
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
 		return $this->version;
-		
-	}
-
-	/**
-	 * The reference to the class that orchestrates the hooks with the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    Caspian_GoogleAnalytics_Loader    Orchestrates the hooks of the plugin.
-	 */
-	public function get_loader() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		return $this->loader;
-		
 	}
 
 }

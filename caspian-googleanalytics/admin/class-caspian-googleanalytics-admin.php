@@ -1,252 +1,250 @@
 <?php
+
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version and hooks.
+ * @link       https://sophie-senftleben.de/
+ * @since      1.0.0
  *
- * @since       1.0.0
- * @package		caspian-googleanalytics
- * @subpackage	caspian-googleanalytics/admin
- * @author		Sophie Senftleben <develop@sophie-senftleben.de>
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/admin
  */
- 
-class Caspian_GoogleAnalytics_Admin {
+
+/**
+ * The admin-specific functionality of the plugin.
+ *
+ * Defines the plugin name, version, and two examples hooks for how to
+ * enqueue the admin-specific stylesheet and JavaScript.
+ *
+ * @package    Caspian_Googleanalytics
+ * @subpackage Caspian_Googleanalytics/admin
+ * @author     Sophie Senftleben <develop@sophie-senftleben.de>
+ */
+class Caspian_Googleanalytics_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since	1.0.0
-	 * @access	private
-	 * @var     string		$plugin_name	The ID of this plugin.
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since	1.0.0
-	 * @access  private
-	 * @var     string		$version		The current version of this plugin.
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
 	
 	/**
-	 * The options of this plugin.
+	 * The options name to be used in this plugin
 	 *
-	 * @since	1.0.0
-	 * @access  private
-	 * @var     string		$options		The options of this plugin.
+	 * @since  	1.0.0
+	 * @access 	private
+	 * @var  	string 		$option_name 	Option name of this plugin
 	 */
-	private $options;
+	private $option_name = 'caspian_googleanalytics';
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since	1.0.0
-	 * @param   string		$plugin_name	The name of this plugin.
-	 * @param   string		$version		The version of this plugin.
+	 * @since    1.0.0
+	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
+
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		
-		$this->set_options();
 
 	}
-	
+
 	/**
-	 * Register the stylesheets for the Dashboard.
+	 * Register the stylesheets for the admin area.
 	 *
-	 * @since 		1.0.0
+	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/' . $this->plugin_name . '-admin.css', array(), $this->version, 'all' );
+
+		/**
+		 * This function is provided for demonstration purposes only.
+		 *
+		 * An instance of this class should be passed to the run() function
+		 * defined in Caspian_Googleanalytics_Loader as all of the hooks are defined
+		 * in that particular class.
+		 *
+		 * The Caspian_Googleanalytics_Loader will then create the relationship
+		 * between the defined hooks and the functions defined in this
+		 * class.
+		 */
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/caspian-googleanalytics-admin.css', array(), $this->version, 'all' );
 
 	}
-	
+
 	/**
-	 * Register the JavaScript for the dashboard.
+	 * Register the JavaScript for the admin area.
 	 *
-	 * @since 		1.0.0
+	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		return;
+
+		/**
+		 * This function is provided for demonstration purposes only.
+		 *
+		 * An instance of this class should be passed to the run() function
+		 * defined in Caspian_Googleanalytics_Loader as all of the hooks are defined
+		 * in that particular class.
+		 *
+		 * The Caspian_Googleanalytics_Loader will then create the relationship
+		 * between the defined hooks and the functions defined in this
+		 * class.
+		 */
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/caspian-googleanalytics-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
 	/**
-	 * Adds a page link to a menu.
+	 * Add an options page under the Settings submenu.
 	 *
-	 * @link	https://developer.wordpress.org/reference/functions/add_submenu_page/
-	 * @since	1.0.0
-	 * @return	void
+	 * @since  1.0.0
 	 */
-	public function add_menus() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		add_options_page(
-			apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ) ),
-			apply_filters( $this->plugin_name . '-settings-menu-title', esc_html__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ) ),
+	public function add_options_page() {
+	
+		$this->plugin_screen_hook_suffix = add_options_page(
+			__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ),
+			__( 'Caspian GoogleAnalytics', 'caspian-googleanalytics' ),
 			'manage_options',
-			$this->plugin_name . '-settings',
-			array( $this, 'settings_page' )
+			$this->plugin_name,
+			array( $this, 'display_options_page' )
 		);
-
+	
 	}
 	
 	/**
-	 * Creates the settings page.
+	 * Render the options page for plugin.
 	 *
-	 * @since 		1.0.0
-	 * @return 		void
+	 * @since  1.0.0
 	 */
-	public function settings_page() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+	public function display_options_page() {
 		
 		// check user capabilities
 		if (!current_user_can('manage_options')) {
 			return;
 		}
 		
-		include( plugin_dir_path( __FILE__ ) . 'partials/caspian-googleanalytics-admin-page-settings.php' );
-
+		include_once 'partials/caspian-googleanalytics-admin-page-settings.php';
+		
 	}
 	
-	/**
-	 * Creates a checkbox field
-	 *
-	 * @param 	array 		$args 			The arguments for the field
-	 * @return 	string 						The HTML field
-	 */
-	public function field_checkbox( $args ) {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		$defaults['class'] 			= '';
-		$defaults['description'] 	= '';
-		$defaults['label'] 			= '';
-		$defaults['name'] 			= $this->plugin_name . '-settings[' . $args['id'] . ']';
-		$defaults['value'] 			= 0;
-
-		apply_filters( $this->plugin_name . '-field-checkbox-options-defaults', $defaults );
-
-		$atts = wp_parse_args( $args, $defaults );
-
-		if ( ! empty( $this->options[$atts['id']] ) ) {
-
-			$atts['value'] = $this->options[$atts['id']];
-
-		}
-
-		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-admin-field-checkbox.php' );
-
-	}
+	public function register_setting() {
 	
-	/**
-	 * Creates a text field
-	 *
-	 * @param 	array 		$args 			The arguments for the field
-	 * @return 	string 						The HTML field
-	 */
-	public function field_text( $args ) {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		$defaults['class'] 			= 'text widefat';
-		$defaults['description'] 	= '';
-		$defaults['label'] 			= '';
-		$defaults['name'] 			= $this->plugin_name . '-settings[' . $args['id'] . ']';
-		$defaults['placeholder'] 	= '';
-		$defaults['type'] 			= 'text';
-		$defaults['value'] 			= '';
-
-		apply_filters( $this->plugin_name . '-field-text-options-defaults', $defaults );
-
-		$atts = wp_parse_args( $args, $defaults );
-
-		if ( ! empty( $this->options[$atts['id']] ) ) {
-
-			$atts['value'] = $this->options[$atts['id']];
-
-		}
-
-		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-admin-field-text.php' );
-
-	}
-	
-	/**
-	 * Registers settings fields with WordPress
-	 */
-	public function register_fields() {
-		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
-		
-		add_settings_field(
-			'message-no-openings',
-			apply_filters( $this->plugin_name . 'label-message-no-openings', esc_html__( 'No Openings Message', 'now-hiring' ) ),
-			array( $this, 'field_text' ),
-			$this->plugin_name,
-			$this->plugin_name . '-messages',
-			array(
-				'description' 	=> 'This message displays on the page if no job postings are found.',
-				'id' 			=> 'message-no-openings',
-				'value' 		=> 'Thank you for your interest! There are no job openings at this time.',
-			)
+		// Add a settings section
+		add_settings_section(
+			$this->option_name . '_settings',
+			__( 'Settings', 'caspian-googleanalytics' ),
+			array( $this, $this->option_name . '_settings_section' ),
+			$this->plugin_name
 		);
 		
 		add_settings_field(
-			'checkbox-no-openings',
-			apply_filters( $this->plugin_name . 'label-mesage-no-openings', esc_html__( 'No Openings Message', 'now-hiring' ) ),
-			array( $this, 'field_checkbox' ),
+			$this->option_name . '_tracking_id',
+			__( 'Tracking-ID', 'caspian-googleanalytics' ),
+			array( $this, $this->option_name . '_tracking_id_setting' ),
 			$this->plugin_name,
-			$this->plugin_name . '-messages',
-			array(
-				'description' 	=> 'This message displays on the page if no job postings are found.',
-				'id' 			=> 'mesage-no-openings',
-				'value' 		=> 'Thank you for your interest! There are no job openings at this time.',
-			)
+			$this->option_name . '_settings',
+			array( 'label_for' => $this->option_name . '_tracking_id' )
 		);
 
+		add_settings_field(
+			$this->option_name . '_anonymize_ip',
+			__( 'Anonymize IP', 'caspian-googleanalytics' ),
+			array( $this, $this->option_name . '_anonymize_ip_setting' ),
+			$this->plugin_name,
+			$this->option_name . '_settings',
+			array( 'label_for' => $this->option_name . '_anonymize_ip' )
+		);
+		
+		register_setting( $this->plugin_name, $this->option_name . '_tracking_id', 'sanitize_text_field' );
+		register_setting( $this->plugin_name, $this->option_name . '_anonymize_ip', array( $this, $this->option_name . '_sanitize_anonymize_ip' ) );
+		
 	}
 	
 	/**
-	 * Registers plugin settings.
+	 * Render the text for the general section
 	 *
-	 * @since 		1.0.0
-	 * @return 		void
+	 * @since  1.0.0
 	 */
-	public function register_settings() {
+	public function caspian_googleanalytics_settings_section() {
 		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		echo '<p>' . __( 'Please change the settings to match your GoogleAnalytics account.', 'caspian-googleanalytics' ) . '</p>';
 		
-		register_setting(
-			$this->plugin_name . '-settings',
-			$this->plugin_name . '-settings'
-		);
-
+		// echo var_dump(get_option( $this->option_name . '_tracking_id' ));
+		// echo var_dump(get_option( $this->option_name . '_anonymize_ip' ));
+		
 	}
 	
 	/**
-	 * Sets the class variable $options.
+	 * Render the radio input field for position option
 	 *
-	 * @since	1.0.0
-	 * @return	void
+	 * @since  1.0.0
 	 */
-	private function set_options() {
+	public function caspian_googleanalytics_tracking_id_setting() {
 		
-		error_log('[Start] ' . basename(__FILE__) . ' -- ' . __METHOD__);
+		$tracking_id = get_option( $this->option_name . '_tracking_id' );
+		echo '<input type="text" name="' . $this->option_name . '_tracking_id' . '" id="' . $this->option_name . '_tracking_id' . '" value="' . $tracking_id . '" placeholder="UA-XXXXXXXXX-X">';
+	}
+	
+	/**
+	 * Render the treshold day input for this plugin
+	 *
+	 * @since  1.0.0
+	 */
+	public function caspian_googleanalytics_anonymize_ip_setting() {
 		
-		$this->options = get_option( $this->plugin_name . '-options' );
+		$anonymize_ip = get_option( $this->option_name . '_anonymize_ip' );
+		$checked = checked( 1, $anonymize_ip, false );
+		echo '<input type="checkbox" name="' . $this->option_name . '_anonymize_ip" id="' . $this->option_name . '_anonymize_ip" ' . $checked . ' value="1">';
+		
+	}
+	
+	/**
+	 * Sanitize the text position value before being saved to database
+	 *
+	 * @param  string $position $_POST value
+	 * @since  1.0.0
+	 * @return string           Sanitized value
+	 */
+	public function caspian_googleanalytics_sanitize_anonymize_ip( $input ) {
+		
+		//returns true if checkbox is checked
+        return ( isset( $input ) ? true : false );
+		
+	}
+	
+	public function add_googleanalytics_tracking_code() {
+	
+		$tracking_id = get_option( $this->option_name . '_tracking_id' );
+		if (empty($tracking_id)) return;
+		
+		$anonymize_ip = get_option( $this->option_name . '_anonymize_ip' );
+		
+		?><!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $tracking_id ?>"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
 
+			gtag('config', '<?php echo $tracking_id ?>');
+			<?php if ($anonymize_ip == true) echo "ga('set', 'anonymizeIp', true);" ?>
+		</script><?php
+		
 	}
 	
 }

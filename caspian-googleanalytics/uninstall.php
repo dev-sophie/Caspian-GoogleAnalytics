@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -18,10 +19,10 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @since       1.0.0
- * @package		caspian-googleanalytics
- * @subpackage	caspian-googleanalytics/public
- * @author		Sophie Senftleben <develop@sophie-senftleben.de>
+ * @link       https://sophie-senftleben.de/
+ * @since      1.0.0
+ *
+ * @package    Caspian_Googleanalytics
  */
 
 // If uninstall not called from WordPress, then exit.
