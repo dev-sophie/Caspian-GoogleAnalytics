@@ -39,6 +39,15 @@ class Caspian_Googleanalytics_Public {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+	
+	/**
+	 * The options name to be used in this plugin
+	 *
+	 * @since  	1.0.0
+	 * @access 	private
+	 * @var  	string 		$option_name 	Option name of this plugin
+	 */
+	private $option_name;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -51,6 +60,7 @@ class Caspian_Googleanalytics_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->option_name = str_replace( '-', '_', $plugin_name );
 
 	}
 
@@ -98,6 +108,26 @@ class Caspian_Googleanalytics_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/caspian-googleanalytics-public.js', array( 'jquery' ), $this->version, false );
 
+	}
+	
+	public function add_googleanalytics_tracking_code() {
+	
+		$tracking_id = get_option( $this->option_name . '_tracking_id' );
+		if (empty($tracking_id)) return;
+		
+		$anonymize_ip = get_option( $this->option_name . '_anonymize_ip' );
+		
+		?><!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $tracking_id ?>"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', '<?php echo $tracking_id ?>');
+			<?php if ($anonymize_ip == true) echo "ga('set', 'anonymizeIp', true);" ?>
+		</script><?php
+		
 	}
 
 }
