@@ -67,8 +67,8 @@ class Caspian_GoogleAnalytics {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+		if ( defined( 'CASPIAN_GOOGLEANALYTICS_VERSION' ) ) {
+			$this->version = CASPIAN_GOOGLEANALYTICS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
